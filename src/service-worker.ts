@@ -14,6 +14,10 @@ import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { StaleWhileRevalidate } from 'workbox-strategies';
 
+
+const CACHE_NAME = "my-pwa-cache-v1";
+const DATA_URL = "https://api.jsonbin.io/v3/b/672ef713e41b4d34e4512c01?meta=false"; // Your API URL
+
 declare const self: ServiceWorkerGlobalScope;
 
 clientsClaim();
@@ -78,3 +82,37 @@ self.addEventListener('message', (event) => {
 });
 
 // Any other custom service worker logic can go here.
+let deferredPrompt:any;
+    window.addEventListener('beforeinstallprompt', (e) => {
+        deferredPrompt = e;
+    });
+
+    const installApp = document.getElementById('installApp');
+    installApp?.addEventListener('click', async () => {
+        if (deferredPrompt !== null) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            if (outcome === 'accepted') {
+                deferredPrompt = null;
+            }
+        }
+    });
+
+  // Intercept fetch requests
+  self.addEventListener("fetch", (event) => {
+  ("Here cache")
+
+if (event.request.url === DATA_URL) {
+  event.respondWith(
+    fetch(event.request)
+      .then((response) => {
+        const clonedResponse = response.clone();
+        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clonedResponse));
+        return response;
+      })
+      .catch(() =>
+        caches.match(event.request).then((cachedResponse) => cachedResponse || Promise.reject("Offline"))
+      )
+  );
+}
+});

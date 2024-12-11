@@ -24,8 +24,10 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.fb-ad {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
 }
 
 @keyframes App-logo-spin {
