@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import MarkdownPage from "./components/MarkdownPage";
-import FacebookBannerAd from "./components/FacebookBannerAd";
 import Home from "./components/Home";
 import ScrollToTop from "./components/ScrollToTop"; 
 // import data from "./data/data.json";
@@ -21,28 +20,7 @@ import AISearch from "./components/AISearch";
 
 const App = () => {
   const [search, setSearch] = useState("");
-  useEffect(() => {
-    // Load Facebook SDK
-    window.fbAsyncInit = function () {
-      window.FB.init({
-            appId: 'YOUR_APP_ID', // Replace with your Facebook App ID
-            autoLogAppEvents: true,
-            xfbml: true,
-            version: 'v17.0' // Use the latest API version
-        });
-    };
-
-    // Load the SDK asynchronously
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) { return; }
-        js = d.createElement(s) as HTMLScriptElement;
-        js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode?.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-}, []);
-
+ 
   const darkTheme = createTheme({
     palette: {
       mode: 'dark',
@@ -71,7 +49,7 @@ const App = () => {
   return (
     <ThemeProvider theme={darkTheme}>
     <CssBaseline />
-    <Router basename="/intern">
+    <Router>
       <AppBarTitleProvider>
       <DataProvider>
       <ButtonAppBar />

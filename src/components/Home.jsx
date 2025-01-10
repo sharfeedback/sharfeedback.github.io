@@ -35,8 +35,10 @@ const Home = () => {
         display: "unset",
       }}
     >
+      <Box>
       <SearchBar value={search} onChange={setSearch} />
-      <Button onClick={openGemini}>Ask AI</Button>
+      <Button style= {{ margin:"10px" }} onClick={openGemini}>Ask AI</Button>
+      </Box>
       <Box>
         {data.map((item, index) => {
           if (

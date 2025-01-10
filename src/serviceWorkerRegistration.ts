@@ -24,6 +24,7 @@ type Config = {
 };
 
 export function register(config?: Config) {
+  console.log("Here", process.env.NODE_ENV, navigator )
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
@@ -52,6 +53,12 @@ export function register(config?: Config) {
         });
       } else {
         // Is not localhost. Just register service worker
+        navigator.serviceWorker.ready.then(() => {
+          console.log(
+            'This web app is being served cache-first by a service ' +
+              'worker. To learn more, visit https://cra.link/PWA'
+          );
+        });
         registerValidSW(swUrl, config);
       }
     });

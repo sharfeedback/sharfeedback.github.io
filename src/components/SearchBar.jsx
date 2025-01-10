@@ -45,6 +45,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 
 const SearchBar = ({ value, onChange }) => (
   <BootstrapInput
+   label={'margin="normal"'}
     type="text"
     variant="outlined"
     placeholder="Search..."

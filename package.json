@@ -2,7 +2,7 @@
   "name": "intern",
   "version": "0.1.0",
   "private": false,
-  "homepage": "https://www.shashankholla.com/intern",
+  "homepage": "https://www.sharfeedback.github.io",
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
