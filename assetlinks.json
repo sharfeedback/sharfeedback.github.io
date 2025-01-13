@@ -1,8 +1,0 @@
-[{
-      "relation": ["delegate_permission/common.handle_all_urls"],
-      "target": {
-        "namespace": "android_app",
-        "package_name": "com.sharcodes.intern",
-        "sha256_cert_fingerprints": ["60:12:E2:11:21:EA:28:27:BB:A9:C8:9E:F3:AA:50:0E:E3:D6:34:16:18:34:60:53:4A:0D:50:AA:19:DC:4F:5F"]
-      }
-    }]
